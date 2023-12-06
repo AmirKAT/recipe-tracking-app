@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./App.css";
 
 function RecipeCreate({ addRecipe }) {
   const [name, setName] = useState("");
@@ -31,60 +32,54 @@ function RecipeCreate({ addRecipe }) {
         <tbody>
           <tr>
             <td>
-              <label>Name:</label>
               <input
                 type="text"
                 name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
                 required
               />
             </td>
             <td>
-              <label>Cuisine:</label>
               <input
                 type="text"
                 name="cuisine"
                 value={cuisine}
                 onChange={(e) => setCuisine(e.target.value)}
+                placeholder="Cuisine"
                 required
               />
             </td>
             <td>
-              <label>Photo URL:</label>
               <input
                 type="url"
                 name="photo"
                 value={photo}
                 onChange={(e) => setPhoto(e.target.value)}
+                placeholder="Photo URL"
                 required
               />
             </td>
-          </tr>
-          <tr>
-            <td colSpan="3">
-              <label>Ingredients:</label>
+            <td>
               <textarea
                 name="ingredients"
                 value={ingredients}
                 onChange={(e) => setIngredients(e.target.value)}
+                placeholder="Ingredients"
                 required
               />
             </td>
-          </tr>
-          <tr>
-            <td colSpan="3">
-              <label>Preparation:</label>
+            <td>
               <textarea
                 name="preparation"
                 value={preparation}
                 onChange={(e) => setPreparation(e.target.value)}
+                placeholder="Preparation"
                 required
               />
             </td>
-          </tr>
-          <tr>
-            <td colSpan="3">
+            <td>
               <button type="submit">Create</button>
             </td>
           </tr>
