@@ -1,29 +1,28 @@
 import React, { useState } from "react";
-import "./App.css";
 
 function RecipeCreate({ addRecipe }) {
-  const [name, setName] = useState("");
-  const [cuisine, setCuisine] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [preparation, setPreparation] = useState("");
+  const initialFormState = {
+    name: "",
+    cuisine: "",
+    photo: "",
+    ingredients: "",
+    preparation: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newRecipe = {
-      name,
-      cuisine,
-      photo,
-      ingredients,
-      preparation,
-    };
-    addRecipe(newRecipe);
-
-    setName("");
-    setCuisine("");
-    setPhoto("");
-    setIngredients("");
-    setPreparation("");
+    addRecipe(formData);
+    setFormData(initialFormState);
   };
 
   return (
@@ -32,50 +31,50 @@ function RecipeCreate({ addRecipe }) {
         <tbody>
           <tr>
             <td>
+              <label>Name:</label>
               <input
                 type="text"
                 name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                value={formData.name}
+                onChange={handleChange}
                 required
               />
             </td>
             <td>
+              <label>Cuisine:</label>
               <input
                 type="text"
                 name="cuisine"
-                value={cuisine}
-                onChange={(e) => setCuisine(e.target.value)}
-                placeholder="Cuisine"
+                value={formData.cuisine}
+                onChange={handleChange}
                 required
               />
             </td>
             <td>
+              <label>Photo URL:</label>
               <input
                 type="url"
                 name="photo"
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
-                placeholder="Photo URL"
+                value={formData.photo}
+                onChange={handleChange}
                 required
               />
             </td>
             <td>
+              <label>Ingredients:</label>
               <textarea
                 name="ingredients"
-                value={ingredients}
-                onChange={(e) => setIngredients(e.target.value)}
-                placeholder="Ingredients"
+                value={formData.ingredients}
+                onChange={handleChange}
                 required
               />
             </td>
             <td>
+              <label>Preparation:</label>
               <textarea
                 name="preparation"
-                value={preparation}
-                onChange={(e) => setPreparation(e.target.value)}
-                placeholder="Preparation"
+                value={formData.preparation}
+                onChange={handleChange}
                 required
               />
             </td>
